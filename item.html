@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Item - Achados e Perdidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/iconLogo.png" alt="Logo" width="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="lista-itens.html">Itens Cadastrados</a></li>
+                    </ul>
+                    <div class="dropdown">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="assets/images/avatarPadrão.png" alt="Conta" width="40" class="rounded-circle" id="avatarUsuario">
+                            <span id="notificacaoPerfil" class="notification-badge"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small">
+                            <li><a class="dropdown-item" href="perfil.html">Meu Perfil</a></li>
+                            <li><a class="dropdown-item" href="#" id="configuracoesLink">Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutButton">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Detalhes do Item / Cadastro de Item -->
+    <main class="container mt-5 mb-5 pt-5">
+        <section class="py-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h2 class="mb-0" id="tituloPaginaItem">Carregando Item...</h2>
+                        </div>
+                        <div class="card-body p-4" id="detalhesItemContainer">
+                            <!-- Formulário de Cadastro/Edição ou Detalhes do Item -->
+                            <div id="loadingItem" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Carregando...</span>
+                                </div>
+                            </div>
+                            <form id="formItem" style="display: none;">
+                                <input type="hidden" id="itemId">
+                                <div class="mb-3">
+                                    <label for="itemTitulo" class="form-label">Título do Item</label>
+                                    <input type="text" class="form-control" id="itemTitulo" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="itemDescricao" class="form-label">Descrição Detalhada</label>
+                                    <textarea class="form-control" id="itemDescricao" rows="3" required></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="itemDataOcorrencia" class="form-label">Data da Ocorrência</label>
+                                        <input type="date" class="form-control" id="itemDataOcorrencia" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="itemLocalOcorrencia" class="form-label">Local da Ocorrência</label>
+                                        <input type="text" class="form-control" id="itemLocalOcorrencia" placeholder="Ex: Próximo à biblioteca" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="itemFotoUrl" class="form-label">URL da Foto (opcional)</label>
+                                    <input type="url" class="form-control" id="itemFotoUrl" placeholder="https://exemplo.com/imagem.jpg">
+                                    <small class="form-text text-muted">Ou faça upload abaixo (funcionalidade futura).</small>
+                                </div>
+                                <!-- <div class="mb-3">
+                                    <label for="itemFotoFile" class="form-label">Upload da Foto (opcional)</label>
+                                    <input class="form-control" type="file" id="itemFotoFile" accept="image/*">
+                                </div> -->
+                                <div class="mb-3" id="itemStatusContainer">
+                                    <label for="itemStatus" class="form-label">Status</label>
+                                    <select class="form-select" id="itemStatus">
+                                        <option value="Achado">Achado (Encontrado por mim)</option>
+                                        <option value="Perdido">Perdido (Estou procurando)</option>
+                                        <option value="Coletado">Coletado (Entregue a um Ponto de Coleta)</option>
+                                        <option value="Em análise">Em Análise</option>
+                                        <option value="Devolvido">Devolvido ao Dono</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3" id="pontoColetaSelectContainer" style="display: none;">
+                                    <label for="itemPontoColeta" class="form-label">Ponto de Coleta (se status for Coletado)</label>
+                                    <select class="form-select" id="itemPontoColeta">
+                                        <option value="">Selecione um ponto de coleta...</option>
+                                        <!-- Pontos de coleta serão carregados aqui -->
+                                    </select>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" id="btnSalvarItem">Salvar Item</button>
+                                </div>
+                            </form>
+                            
+                            <div id="viewItemDetails" style="display: none;">
+                                <!-- Detalhes do item para visualização -->
+                            </div>
+
+                            <div id="itemActions" class="mt-4" style="display: none;">
+                                <!-- Ações como "Marcar como Encontrado", "Entregar a Ponto de Coleta" -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Achados e Perdidos - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/item.js"></script> <!-- Script específico para esta página -->
+</body>
+</html>

@@ -1,0 +1,76 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "João Silva",
+      "email": "joao.silva@email.com",
+      "senha": "senha123",
+      "tipo": "comum"
+    },
+    {
+      "id": "2",
+      "nome": "Maria Oliveira",
+      "email": "maria.oliveira@email.com",
+      "senha": "senha456",
+      "tipo": "comum"
+    }
+  ],
+  "pontos_coleta": [
+    {
+      "id": "1",
+      "nome": "Padaria Pão Quente",
+      "email": "contato@padariapaoquente.com",
+      "senha": "padaria123",
+      "tipo": "ponto_coleta",
+      "endereco": "Rua das Flores, 123, Centro",
+      "horario_funcionamento": "Seg-Sex: 06:00-20:00, Sab: 07:00-18:00"
+    },
+    {
+      "id": "2",
+      "nome": "Biblioteca Municipal",
+      "email": "biblioteca@cidade.gov.br",
+      "senha": "biblioteca456",
+      "tipo": "ponto_coleta",
+      "endereco": "Av. Principal, 789, Bairro Livro",
+      "horario_funcionamento": "Seg-Sex: 08:00-17:00"
+    }
+  ],
+  "itens": [
+    {
+      "id": "1",
+      "titulo": "Chave de Carro Perdida",
+      "descricao": "Chave de carro da marca Fiat, com chaveiro do Batman.",
+      "data_ocorrencia": "2025-05-10",
+      "local_ocorrencia": "Estacionamento do Shopping Central",
+      "foto_url": "assets/images/chave_exemplo.jpg",
+      "status": "Perdido",
+      "id_usuario_reportou": 1,
+      "id_ponto_coleta": null,
+      "tipo_registro": "perdido"
+    },
+    {
+      "id": "2",
+      "titulo": "Guarda-chuva Encontrado",
+      "descricao": "Guarda-chuva preto, grande, encontrado perto do ponto de ônibus da Praça da Sé.",
+      "data_ocorrencia": "2025-05-11",
+      "local_ocorrencia": "Praça da Sé",
+      "foto_url": "assets/images/guardachuva_exemplo.jpg",
+      "status": "Achado",
+      "id_usuario_reportou": 2,
+      "id_ponto_coleta": null,
+      "tipo_registro": "achado"
+    },
+    {
+      "id": "3",
+      "titulo": "Celular Encontrado na Padaria",
+      "descricao": "Celular Samsung Galaxy S20, capa transparente, encontrado na mesa da Padaria Pão Quente.",
+      "data_ocorrencia": "2025-05-12",
+      "local_ocorrencia": "Padaria Pão Quente",
+      "foto_url": "assets/images/celular_exemplo.jpg",
+      "status": "Coletado",
+      "id_usuario_reportou": null,
+      "id_ponto_coleta": 1,
+      "tipo_registro": "achado"
+    }
+  ]
+}

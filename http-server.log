@@ -1,0 +1,20 @@
+127.0.0.1 - - [12/May/2025 19:09:12] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:12] "GET /assets/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:12] "GET /assets/js/script.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:12] "GET /assets/images/iconLogo.png HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:12] "GET /assets/images/avatarPadr%C3%A3o.png HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:12] "GET /assets/images/iconePerdido.png HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:12] "GET /assets/images/iconAchado.png HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:13] code 404, message File not found
+127.0.0.1 - - [12/May/2025 19:09:13] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [12/May/2025 19:09:46] "GET /login.html HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:09:46] "GET /assets/js/auth.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:10:38] "GET /perfil.html HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:10:38] "GET /assets/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [12/May/2025 19:10:38] "GET /assets/js/script.js HTTP/1.1" 304 -
+127.0.0.1 - - [12/May/2025 19:10:38] "GET /assets/js/perfil.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:10:38] "GET /assets/js/auth.js HTTP/1.1" 304 -
+127.0.0.1 - - [12/May/2025 19:10:38] "GET /assets/images/iconLogo.png HTTP/1.1" 304 -
+127.0.0.1 - - [12/May/2025 19:10:38] "GET /assets/images/avatarPadr%C3%A3o.png HTTP/1.1" 304 -
+127.0.0.1 - - [12/May/2025 19:10:55] "GET /item.html?action=perdido HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2025 19:10:55] "GET /assets/js/item.js HTTP/1.1" 200 -

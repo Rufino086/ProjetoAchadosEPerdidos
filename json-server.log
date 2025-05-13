@@ -1,0 +1,17 @@
+--watch/-w can be omitted, JSON Server 1+ watches for file changes by default
+JSON Server started on PORT :3000
+Press CTRL-C to stop
+Watching /home/ubuntu/achados_e_perdidos/db/db.json...
+
+(˶ᵔ ᵕ ᵔ˶)
+
+Index:
+http://localhost:3000/
+
+Static files:
+Serving ./public directory if it exists
+
+Endpoints:
+http://localhost:3000/usuarios
+http://localhost:3000/pontos_coleta
+http://localhost:3000/itens
