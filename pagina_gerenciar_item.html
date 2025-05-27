@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Item - Achados e Perdidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/estilos_globais.css"> <!-- Corrigido -->
+    <style>
+        /* Estilos específicos (mantidos) */
+        .preview-container {
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .preview-video {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .file-upload-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .file-upload-btn input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            cursor: pointer;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="pagina_inicial.html"> <!-- Corrigido -->
+                    <img src="assets/images/iconLogo.png" alt="Logo Achados e Perdidos" width="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="pagina_inicial.html">Home</a></li> <!-- Corrigido -->
+                        <li class="nav-item"><a class="nav-link" href="pagina_lista_itens.html">Itens Cadastrados</a></li> <!-- Corrigido -->
+                    </ul>
+                    <div class="dropdown" id="userProfileDropdownContainer">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="assets/images/avatarPadrão.png" alt="Perfil do Usuário" width="40" class="rounded-circle" id="avatarUsuario">
+                            <span id="notificacaoPerfil" class="notification-badge"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small">
+                            <!-- Links atualizados pelo manipulador_navbar_auth.js -->
+                            <li><a class="dropdown-item" href="#" id="linkMeuPerfil">Meu Perfil</a></li> 
+                            <li><a class="dropdown-item" href="pagina_login.html" id="linkEntrar">Entrar</a></li> <!-- Corrigido -->
+                            <li><a class="dropdown-item" href="pagina_cadastro_usuario.html" id="linkCriarConta">Criar Conta</a></li> <!-- Corrigido -->
+                            <li><a class="dropdown-item" href="#" id="linkConfiguracoes" style="display: none;">Configurações</a></li>
+                            <li><hr class="dropdown-divider" id="dividerLogout" style="display: none;"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutButton" style="display: none;">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Detalhes do Item / Cadastro de Item -->
+    <main class="container mt-5 mb-5 pt-5">
+        <section class="py-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-7">
+                    <div class="card shadow-sm form-card">
+                        <div class="card-header bg-light">
+                            <h2 class="mb-0 page-title" id="tituloPaginaItem">Carregando Item...</h2>
+                        </div>
+                        <div class="card-body p-4" id="detalhesItemContainer">
+                            <div id="loadingItem" class="text-center py-5">
+                                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="visually-hidden">Carregando...</span>
+                                </div>
+                                <p class="mt-2">Carregando dados do item...</p>
+                            </div>
+                            
+                            <form id="formItem" style="display: none;">
+                                <input type="hidden" id="itemId">
+                                <input type="hidden" id="itemTipoRegistro" value="achado"> <!-- Padrão para novos itens, ajustado por JS -->
+
+                                <div class="mb-3">
+                                    <label for="itemTitulo" class="form-label fw-medium">Título do Item <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="itemTitulo" required placeholder="Ex: Chave de Carro Azul">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="itemCategoria" class="form-label fw-medium">Categoria <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="itemCategoria" required>
+                                            <option value="" disabled selected>Selecione uma categoria...</option>
+                                            <!-- Categorias carregadas por JS -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="itemTipo" class="form-label fw-medium">Tipo de Item <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="itemTipo" required disabled>
+                                            <option value="" disabled selected>Selecione um tipo...</option>
+                                            <!-- Tipos carregados por JS com base na categoria -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3" id="itemTipoOutroContainer" style="display: none;">
+                                    <label for="itemTipoOutro" class="form-label fw-medium">Especifique o Tipo de Item <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="itemTipoOutro" placeholder="Ex: Chaveiro de Pelúcia do Pikachu">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="itemDescricao" class="form-label fw-medium">Descrição Detalhada <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="itemDescricao" rows="4" required placeholder="Forneça detalhes como marca, cor, material, características distintivas, etc."></textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="itemDataOcorrencia" class="form-label fw-medium">Data da Ocorrência <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="itemDataOcorrencia" required>
+                                        <small class="form-text text-muted">A data não pode ser futura.</small>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="itemLocalOcorrencia" class="form-label fw-medium">Local da Ocorrência <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="itemLocalOcorrencia" placeholder="Ex: Praça da Sé, próximo ao metrô" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-medium">Imagem ou Vídeo do Item</label>
+                                    <div class="file-upload-btn d-grid">
+                                        <button type="button" class="btn btn-outline-primary" id="btnSelectFile">
+                                            <i class="bi bi-upload me-2"></i>Selecionar Arquivo
+                                        </button>
+                                        <input type="file" id="itemArquivo" accept="image/*,video/*">
+                                    </div>
+                                    <small class="form-text text-muted">Selecione uma imagem ou vídeo do item para facilitar a identificação.</small>
+                                    <div class="preview-container" id="previewContainer">
+                                        <img src="#" alt="Preview" class="preview-image" id="previewImage" style="display: none;">
+                                        <video controls class="preview-video" id="previewVideo" style="display: none;"></video>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="itemFotoUrl" class="form-label fw-medium">URL da Foto (Opcional)</label>
+                                    <input type="url" class="form-control" id="itemFotoUrl" placeholder="https://exemplo.com/imagem.jpg">
+                                    <small class="form-text text-muted">Alternativamente, cole o link de uma imagem do item.</small>
+                                </div>
+
+                                <!-- Campo de status oculto - será definido automaticamente -->
+                                <input type="hidden" id="itemStatus" value="">
+
+                                <div class="mb-3" id="pontoColetaSelectContainer" style="display: none;">
+                                    <label for="itemPontoColeta" class="form-label fw-medium">Ponto de Coleta (se aplicável)</label>
+                                    <select class="form-select" id="itemPontoColeta">
+                                        <option value="">Selecione um ponto de coleta...</option>
+                                        <!-- Pontos de coleta serão carregados aqui por JS -->
+                                    </select>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="d-flex justify-content-end gap-2">
+                                    <!-- Corrigido: Botão Cancelar volta para a lista de itens -->
+                                    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='pagina_lista_itens.html'">Cancelar</button> 
+                                    <button type="submit" class="btn btn-primary btn-submit-item" id="btnSalvarItem">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true" style="display: none;"></span>
+                                        Salvar Item
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <div id="viewItemDetails" class="mt-3" style="display: none;">
+                                <!-- Detalhes do item para visualização serão preenchidos por JS -->
+                            </div>
+
+                            <div id="itemActions" class="mt-4" style="display: none;">
+                                <!-- Ações como "Marcar como Encontrado", "Entregar a Ponto de Coleta" serão preenchidas por JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Achados e Perdidos - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts Corrigidos -->
+    <script src="assets/js/utils/api_helpers.js"></script> 
+    <script src="assets/js/ui/manipulador_navbar_auth.js"></script>
+    <script src="assets/js/utils/redirecionamento_cadastro_achado.js"></script> 
+    <script src="assets/js/paginas/logica_gerenciar_item.js"></script> 
+</body>
+</html>
+
