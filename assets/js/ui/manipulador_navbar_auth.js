@@ -23,13 +23,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Verificar usuário logado usando a função helper (que usa sessionStorage)
     const usuarioLogado = getUsuarioLogado(); // Função de api_helpers.js
 
-    if (usuarioLogado) {
-        console.log("Usuário logado detectado na navbar:", usuarioLogado.email);
+    const usuario = sessionStorage.getItem('usuarioLogado');
+    if (usuario) {
+        console.log("Usuário logado detectado na navbar:", usuario.email);
         // Usuário está logado
         if(linkMeuPerfil) {
             linkMeuPerfil.style.display = "block";
             // Ajustar o link do perfil com base no tipo de usuário
-            linkMeuPerfil.href = usuarioLogado.tipo === 'ponto_coleta' ? 'pagina_perfil_ponto_coleta.html' : 'pagina_perfil_usuario.html';
+            linkMeuPerfil.href = usuario.tipo === 'ponto_coleta' ? 'pagina_perfil_ponto_coleta.html' : 'pagina_perfil_usuario.html';
         }
         // if(linkConfiguracoes) linkConfiguracoes.style.display = "block"; // Manter oculto
         if(dividerLogout) dividerLogout.style.display = "block";
@@ -43,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
         if (avatarUsuario) {
             // Priorizar foto específica do tipo de usuário
             let avatarSrc = "assets/images/avatarPadrão.png"; // Padrão
-            if (usuarioLogado.tipo === 'ponto_coleta' && usuarioLogado.foto_estabelecimento) {
-                avatarSrc = usuarioLogado.foto_estabelecimento;
-            } else if (usuarioLogado.tipo === 'usuario' && usuarioLogado.avatar) {
-                avatarSrc = usuarioLogado.avatar;
+            if (usuario.tipo === 'ponto_coleta' && usuario.foto_estabelecimento) {
+                avatarSrc = usuario.foto_estabelecimento;
+            } else if (usuario.tipo === 'usuario' && usuario.avatar) {
+                avatarSrc = usuario.avatar;
             } // Senão, mantém o padrão
             avatarUsuario.src = avatarSrc;
              avatarUsuario.onerror = () => { avatarUsuario.src = 'assets/images/avatarPadrão.png'; }; // Fallback

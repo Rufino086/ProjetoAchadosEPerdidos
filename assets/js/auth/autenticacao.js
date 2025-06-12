@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Limpar qualquer sessão antiga ao carregar a página de login
     // Isso garante que o usuário precise logar novamente
-    sessionStorage.removeItem('usuarioLogado');
+    ///sessionStorage.removeItem('usuarioLogado');
     console.log("Sessão anterior (se existente) removida do sessionStorage.");
 });
 

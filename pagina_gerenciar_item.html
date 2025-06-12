@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/estilos_globais.css"> <!-- Corrigido -->
+    <link rel="stylesheet" href="assets/css/estilos_globais.css">
     <style>
-        /* Estilos específicos (mantidos) */
+        
         .preview-container {
             margin-top: 10px;
             text-align: center;
@@ -64,12 +64,17 @@
         }
     </style>
 </head>
+
+    <script src="assets/js/utils/api_helpers.js"></script> 
+    <script src="assets/js/ui/manipulador_navbar_auth.js"></script>
+    <script src="assets/js/paginas/logica_perfil_usuario.js"></script> 
 <body>
+
     <!-- Navbar -->
     <header class="fixed-top">
         <nav class="navbar navbar-expand-lg bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="pagina_inicial.html"> <!-- Corrigido -->
+                <a class="navbar-brand" href="pagina_inicial.html"> 
                     <img src="assets/images/iconLogo.png" alt="Logo Achados e Perdidos" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -77,8 +82,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="pagina_inicial.html">Home</a></li> <!-- Corrigido -->
-                        <li class="nav-item"><a class="nav-link" href="pagina_lista_itens.html">Itens Cadastrados</a></li> <!-- Corrigido -->
+                        <li class="nav-item"><a class="nav-link" href="pagina_inicial.html">Home</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="pagina_lista_itens.html">Itens Cadastrados</a></li> 
                     </ul>
                     <div class="dropdown" id="userProfileDropdownContainer">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,8 +92,8 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small">
                             <li><a class="dropdown-item" href="#" id="linkMeuPerfil">Meu Perfil</a></li>
-                            <li><a class="dropdown-item" href="pagina_login.html" id="linkEntrar">Entrar</a></li> <!-- Corrigido -->
-                            <li><a class="dropdown-item" href="pagina_cadastro_usuario.html" id="linkCriarConta">Criar Conta</a></li> <!-- Corrigido -->
+                            <li><a class="dropdown-item" href="pagina_login.html" id="linkEntrar">Entrar</a></li> 
+                            <li><a class="dropdown-item" href="pagina_cadastro_usuario.html" id="linkCriarConta">Criar Conta</a></li> 
                             <li><a class="dropdown-item" href="#" id="linkConfiguracoes" style="display: none;">Configurações</a></li>
                             <li><hr class="dropdown-divider" id="dividerLogout" style="display: none;"></li>
                             <li><a class="dropdown-item" href="#" id="logoutButton" style="display: none;">Sair</a></li>
@@ -133,7 +138,7 @@
                                 <label for="itemCategoria" class="form-label">Categoria <span class="text-danger">*</span></label>
                                 <select class="form-select" id="itemCategoria" required>
                                     <option value="" disabled selected>Selecione uma categoria...</option>
-                                    <!-- Opções serão carregadas via JavaScript -->
+                                    <!-- Opções carregadas via JavaScript -->
                                 </select>
                             </div>
                         </div>
@@ -143,7 +148,7 @@
                                 <label for="itemTipo" class="form-label">Tipo <span class="text-danger">*</span></label>
                                 <select class="form-select" id="itemTipo" disabled required>
                                     <option value="" disabled selected>Selecione uma categoria primeiro...</option>
-                                    <!-- Opções serão carregadas via JavaScript -->
+                                    <!-- Opções carregadas via JavaScript -->
                                 </select>
                             </div>
                         </div>
@@ -174,7 +179,7 @@
                                 <label for="itemPontoColeta" class="form-label">Ponto de Coleta</label>
                                 <select class="form-select" id="itemPontoColeta">
                                     <option value="">Selecione um ponto de coleta (opcional)...</option>
-                                    <!-- Opções serão carregadas via JavaScript -->
+                                    <!-- Opções carregadas via JavaScript -->
                                 </select>
                             </div>
                         </div>
@@ -211,19 +216,20 @@
                                 <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" style="display: none;"></span>
                                 Salvar Item
                             </button>
-                            <a href="pagina_lista_itens.html" class="btn btn-outline-secondary ms-2">Cancelar</a> <!-- Corrigido -->
+                            <a href="pagina_lista_itens.html" class="btn btn-outline-secondary ms-2">Cancelar</a>
                         </div>
                     </div>
                 </form>
                 
                 <!-- Visualização de Item -->
+
                 <div id="viewItemDetails" style="display: none;">
-                    <!-- Conteúdo será preenchido via JavaScript -->
+                    <!-- Conteúdo preenchido via JavaScript -->
                 </div>
                 
                 <!-- Ações do Item -->
                 <div id="itemActions" class="mt-4" style="display: none;">
-                    <!-- Ações serão preenchidas via JavaScript -->
+                    <!-- Ações preenchidas via JavaScript -->
                 </div>
             </div>
         </div>
@@ -237,13 +243,14 @@
                 <a href="pagina_inicial.html#sobre" class="text-white mx-2">Sobre</a> |
                 <a href="pagina_inicial.html#equipe" class="text-white mx-2">Equipe</a> |
                 <a href="pagina_inicial.html#ajuda" class="text-white mx-2">Ajuda</a> |
-                <a href="#" class="text-white mx-2">Termos de Uso</a> <!-- Corrigido -->
+                <a href="#" class="text-white mx-2">Termos de Uso</a>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Scripts Corrigidos -->
+    
+    <!-- Scripts -->
     <script src="assets/js/utils/api_helpers.js"></script> 
     <script src="assets/js/ui/manipulador_navbar_auth.js"></script>
     <script src="assets/js/paginas/logica_gerenciar_item.js"></script> 

@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/estilos_globais.css"> <!-- Corrigido -->
+    <link rel="stylesheet" href="assets/css/estilos_globais.css">
     <style>
-        /* Estilos específicos da página de perfil do ponto de coleta (mantidos) */
+        
         .profile-card {
             border-radius: 20px;
             overflow: hidden;
@@ -275,11 +275,12 @@
     </style>
 </head>
 <body>
+
     <!-- Navbar -->
     <header class="fixed-top">
         <nav class="navbar navbar-expand-lg bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="pagina_inicial.html"> <!-- Corrigido -->
+                <a class="navbar-brand" href="pagina_inicial.html"> 
                     <img src="assets/images/iconLogo.png" alt="Logo Achados e Perdidos" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -287,8 +288,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="pagina_inicial.html">Home</a></li> <!-- Corrigido -->
-                        <li class="nav-item"><a class="nav-link" href="pagina_lista_itens.html">Itens Cadastrados</a></li> <!-- Corrigido -->
+                        <li class="nav-item"><a class="nav-link" href="pagina_inicial.html">Home</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="pagina_lista_itens.html">Itens Cadastrados</a></li> 
                     </ul>
                     <div class="dropdown" id="userProfileDropdownContainer">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -296,10 +297,11 @@
                             <span id="notificacaoPerfil" class="notification-badge"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small">
-                             <!-- Links atualizados pelo manipulador_navbar_auth.js -->
-                            <li><a class="dropdown-item" href="#" id="linkMeuPerfil">Meu Perfil</a></li> 
-                            <li><a class="dropdown-item" href="pagina_login.html" id="linkEntrar">Entrar</a></li> <!-- Corrigido -->
-                            <li><a class="dropdown-item" href="pagina_cadastro_usuario.html" id="linkCriarConta">Criar Conta</a></li> <!-- Corrigido -->
+
+                             <!-- Links manipulador_navbar_auth.js -->
+                            <li><a class="dropdown-item" href="#" id="linkMeuPerfil">Meu Perfil</a></li>
+                            <li><a class="dropdown-item" href="pagina_login.html" id="linkEntrar">Entrar</a></li>
+                            <li><a class="dropdown-item" href="pagina_cadastro_usuario.html" id="linkCriarConta">Criar Conta</a></li>
                             <li><a class="dropdown-item" href="#" id="linkConfiguracoes" style="display: none;">Configurações</a></li>
                             <li><hr class="dropdown-divider" id="dividerLogout" style="display: none;"></li>
                             <li><a class="dropdown-item" href="#" id="logoutButton" style="display: none;">Sair</a></li>
@@ -317,9 +319,7 @@
                 <!-- Cartão de Perfil -->
                 <div class="profile-card mb-4">
                     <div class="profile-header">
-                        <!-- Apenas imagem de fundo, sem texto -->
                     </div>
-                    
                     <div class="profile-avatar-container">
                         <img src="assets/images/avatarPadrão.png" alt="Logo do Estabelecimento" class="profile-avatar" id="avatarPontoColeta">
                         <div class="avatar-actions">
@@ -409,18 +409,18 @@
                 
                 <!-- Ações -->
                 <div class="action-buttons">
-                    <a href="pagina_cadastro_ponto_coleta.html" class="btn btn-primary action-btn w-100 mb-2 mb-md-0" id="btnEditarPerfil"> <!-- Corrigido -->
+                    <a href="pagina_cadastro_ponto_coleta.html" class="btn btn-primary action-btn w-100 mb-2 mb-md-0" id="btnEditarPerfil"> 
                         <i class="bi bi-pencil-square"></i>
                         <span class="ms-2">Editar Perfil</span>
                     </a>
-                    <a href="pagina_lista_itens.html" class="btn btn-outline-primary action-btn w-100"> <!-- Corrigido -->
+                    <a href="pagina_lista_itens.html" class="btn btn-outline-primary action-btn w-100">
                         <i class="bi bi-search"></i>
                         <span class="ms-2">Ver Todos os Itens</span>
                     </a>
                 </div>
             </div>
-            
             <div class="col-lg-8">
+
                 <!-- Itens Recebidos -->
                 <div class="item-list-container">
                     <h2 class="section-title">
@@ -443,7 +443,7 @@
                         </div>
                         
                         <div class="row row-cols-1 row-cols-md-2 g-4" id="itensRecebidosList">
-                            <!-- Itens serão carregados aqui via JavaScript -->
+                            <!-- Itens carregados aqui via JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -470,7 +470,7 @@
                         </div>
                         
                         <div class="list-group" id="historicoEntregasList">
-                            <!-- Histórico será carregado aqui via JavaScript -->
+                            <!-- Histórico carregado via JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -486,13 +486,13 @@
                 <a href="pagina_inicial.html#sobre" class="text-white mx-2">Sobre</a> |
                 <a href="pagina_inicial.html#equipe" class="text-white mx-2">Equipe</a> |
                 <a href="pagina_inicial.html#ajuda" class="text-white mx-2">Ajuda</a> |
-                <a href="#" class="text-white mx-2">Termos de Uso</a> <!-- Corrigido -->
+                <a href="#" class="text-white mx-2">Termos de Uso</a>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Scripts Corrigidos -->
+    <!-- Scripts -->
     <script src="assets/js/utils/api_helpers.js"></script> 
     <script src="assets/js/ui/manipulador_navbar_auth.js"></script>
     <script src="assets/js/paginas/logica_perfil_ponto_coleta.js"></script> 
@@ -663,8 +663,6 @@
                 }
                 
                 try {
-                    // Em um sistema real, aqui seria feito o upload para um servidor
-                    // Como estamos usando JSON Server, vamos usar a URL do preview (base64)
                     const fotoUrl = previewImage.src;
                     
                     // Atualizar no servidor

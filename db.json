@@ -13,17 +13,10 @@
       "email": "maria.oliveira@email.com",
       "senha": "senha456",
       "tipo": "comum"
-    },
-    {
-      "id": "799e",
-      "nome": "Teste123",
-      "email": "Teste123@gmail.com",
-      "senha": "Teste123",
-      "tipo": "comum",
-      "data_cadastro": "2025-06-08T23:25:09.605Z",
-      "foto_perfil": null
     }
   ],
+
+
   "pontos_coleta": [
     {
       "id": "1",
@@ -47,9 +40,31 @@
       "senha": "biblioteca456",
       "tipo": "ponto_coleta",
       "endereco": "Praça Senador José Bento, 2 - Centro, Pouso Alegre - MG, 37550-000",
-      "horario_funcionamento": "Seg-Sex: 08:00-17:00"
+      "horario_funcionamento": "Seg-Sex: 08:00-17:00",
+      "nome_estabelecimento": "Biblioteca Municipal de Pouso Alegre",
+      "cnpj": "00.000.000/0000",
+      "telefone": "(11) 1111-1111",
+      "descricao": "Biblioteca",
+      "cadastro_completo": true
+    },
+    {
+      "id": "699c",
+      "nome_estabelecimento": "Padaria Pão Quente",
+      "cnpj": "11.111.111/1111-11",
+      "endereco": "ru,numero,bairro",
+      "latitude": -22.219981,
+      "longitude": -45.930906,
+      "telefone": "(11) 11111-1111",
+      "horario_funcionamento": "EX: Seg-Sex: 06:00-20:00, Sab: 07:00-18:00",
+      "descricao": "brevemente sobre meu estabelecimento",
+      "foto_estabelecimento": null,
+      "tipo": "ponto_coleta",
+      "data_cadastro": "2025-06-12T12:41:27.722Z",
+      "ativo": true
     }
   ],
+
+
   "itens": [
     {
       "id": "1",
@@ -88,13 +103,14 @@
       "data_ocorrencia": "2025-05-12",
       "local_ocorrencia": "Biblioteca Municiaple de Pouso Alegre",
       "foto_url": "https://wp-pa.phonandroid.com/uploads/2020/03/guide-achat-sur-les-meilleures-protections-samsung-galaxy-S20-1200x900.jpg",
-      "status": "Coletado",
+      "status": "Devolvido",
       "id_usuario_reportou": null,
       "id_ponto_coleta": 1,
       "tipo_registro": "achado",
       "categoria_item": "Eletrônicos",
       "tipo_item": "Celular (Smartphone, iPhone, Android)",
-      "tipo_item_outro": null
+      "tipo_item_outro": null,
+      "data_atualizacao": "2025-06-11T23:31:55.682Z"
     },
     {
       "id": "d7ad",
@@ -102,14 +118,14 @@
       "descricao": "uma cheve de carro chevrolett",
       "categoria_id": "4",
       "tipo": "Chave de Carro",
-      "data_ocorrencia": "2025-06-04",
+      "data_ocorrencia": "2025-05-30",
       "local_ocorrencia": "Encontrei o tem na frente ao brasa e prosa",
       "foto_url": "https://cf.shopee.com.br/file/sg-11134201-22110-p8nwogdjzfjvbb",
       "tipo_registro": "achado",
       "status": "Achado",
       "id_usuario_reportou": "1",
       "data_registro": "2025-06-06T00:20:21.707Z",
-      "data_atualizacao": "2025-06-06T00:20:21.707Z"
+      "data_atualizacao": "2025-06-09T17:10:07.108Z"
     },
     {
       "id": "fbd4",
@@ -140,8 +156,55 @@
       "id_usuario_reportou": "799e",
       "data_registro": "2025-06-08T23:28:58.434Z",
       "data_atualizacao": "2025-06-08T23:28:58.434Z"
+    },
+    {
+      "id": "c9f1",
+      "titulo": "carteira",
+      "descricao": "carteira com identidade de Daniel da Silva Cunha, contendo R$220 tendo carteira de identidade, CPF, Carteira de Motorista, etc..",
+      "categoria_id": "1",
+      "tipo": "Carteira com documentos",
+      "data_ocorrencia": "2025-06-09",
+      "local_ocorrencia": "Univás",
+      "foto_url": null,
+      "tipo_registro": "perdido",
+      "status": "Perdido",
+      "id_usuario_reportou": "1",
+      "data_registro": "2025-06-09T22:53:31.631Z",
+      "data_atualizacao": "2025-06-09T22:53:31.631Z"
+    },
+    {
+      "id": "ed5c",
+      "titulo": "Chave de casa",
+      "descricao": "achei hj",
+      "categoria_id": "4",
+      "tipo": "Chave de Casa",
+      "data_ocorrencia": "2025-06-11",
+      "local_ocorrencia": "praça",
+      "foto_url": null,
+      "tipo_registro": "achado",
+      "status": "Achado",
+      "id_usuario_reportou": "1",
+      "data_registro": "2025-06-11T22:56:56.411Z",
+      "data_atualizacao": "2025-06-11T22:56:56.411Z"
+    },
+    {
+      "id": "ae13",
+      "titulo": "Chave de carro",
+      "descricao": "dfeefsf",
+      "categoria_id": "1",
+      "tipo": "RG",
+      "data_ocorrencia": "2025-06-11",
+      "local_ocorrencia": "Encontrei o tem na frente ao brasa e prosa",
+      "foto_url": null,
+      "tipo_registro": "achado",
+      "status": "Achado",
+      "id_usuario_reportou": "1",
+      "data_registro": "2025-06-11T23:34:24.533Z",
+      "data_atualizacao": "2025-06-11T23:34:24.533Z"
     }
   ],
+
+  
   "categorias_itens": [
     {
       "id": "1",

@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     alert("Este email já está cadastrado. Tente fazer login ou use outro email.");
                     return;
                 }
-                
+                const toke = "?a"
+                localStorage.setItem(token)
                 // Criar objeto do usuário
                 const novoUsuario = {
                     nome: nome,
