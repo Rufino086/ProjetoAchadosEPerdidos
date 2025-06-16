@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achados e Perdidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/estilos_globais.css"> 
+    <style>
+        /* Cards da Equipe - Estilos Corrigidos */
+        .section-equipe {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0;
+        }
+
+        .member-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            background: white;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .member-img-reformulated {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #28a745;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .member-card .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
+        }
+
+        .member-card .card-title {
+            color: #2c3e50;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .member-card .card-text {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #6c757d;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+
+        .member-card .mt-auto {
+            margin-top: auto;
+        }
+
+        .member-card .mt-auto a {
+            color: #28a745;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .member-card .mt-auto a:hover {
+            color: #1e7e34;
+        }
+
+        /* Grid responsivo para cards da equipe */
+        #equipeContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Responsividade para cards da equipe */
+        @media (max-width: 768px) {
+            .member-img-reformulated {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .member-card .card-title {
+                font-size: 0.9rem;
+            }
+            
+            .member-card .card-text {
+                font-size: 0.8rem;
+            }
+            
+            .section-equipe {
+                padding: 2rem 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #equipeContainer {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar fixa no topo -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="pagina_inicial.html"> 
+                    <img src="assets/images/iconLogo.png" alt="Logo Achados e Perdidos" width="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pontos">Pontos de Coleta</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#equipe">Equipe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#ajuda">Ajuda</a></li>
+                    </ul>
+                    <div class="dropdown" id="userProfileDropdownContainer">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="assets/images/avatarPadrão.png" alt="Perfil do Usuário" width="40" class="rounded-circle" id="avatarUsuario">
+                            <span id="notificacaoPerfil" class="notification-badge"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small">
+                            <li><a class="dropdown-item" href="pagina_perfil_usuario.html" id="linkMeuPerfil">Meu Perfil</a></li> 
+                            <li><a class="dropdown-item" href="pagina_login.html" id="linkEntrar">Entrar</a></li> 
+                            <li><a class="dropdown-item" href="pagina_cadastro_usuario.html" id="linkCriarConta">Criar Conta</a></li> 
+                            <li><a class="dropdown-item" href="#" id="linkConfiguracoes" style="display: none;">Configurações</a></li>
+                            <li><hr class="dropdown-divider" id="dividerLogout" style="display: none;"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutButton" style="display: none;">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="container-fluid gx-0">
+
+        <!-- Seção Hero -->
+        <section class="hero-section d-flex align-items-center justify-content-center text-center px-3">
+            <div class="hero-content">
+                <h1 class="display-3 fw-bold">Achados <span class="hero-and">&</span> Perdidos</h1>
+                <p class="lead mt-3">Conectando itens perdidos aos seus donos. Faça o bem para receber o bem.</p>
+            </div>
+        </section>
+
+        <section class="container my-4 my-md-5">
+            <div class="row justify-content-center text-center g-3 g-md-4">
+                <div class="col-sm-10 col-md-5">
+                    <div class="action-card">
+                        <a href="pagina_selecionar_ponto_coleta.html?action=achado" class="action-btn-reformulated">
+                            <img src="assets/images/iconAchado.png" alt="Ícone de item achado" class="img-action-reformulated img-fluid">
+                        </a>
+                        <h3 class="mt-3 fs-4 fs-md-3">Achei um Item</h3>
+                        <p class="text-muted small">Encontrou algo? Ajude a devolver ao dono registrando aqui.</p>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-5">
+                    <div class="action-card">
+                        <a href="pagina_gerenciar_item.html?action=perdido" class="action-btn-reformulated">
+                            <img src="assets/images/iconePerdido.png" alt="Ícone de item perdido" class="img-action-reformulated img-fluid">
+                        </a>
+                        <h3 class="mt-3 fs-4 fs-md-3">Perdi um Item</h3>
+                        <p class="text-muted small">Perdeu alguma coisa? Cadastre para que possa ser encontrado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrossel -->
+        <section class="container my-4 my-md-5">
+            <div id="destaquesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3 shadow-lg">
+                    <div class="carousel-item active">
+                        <img src="https://deliton.github.io/SIwebsite/img/UnivasCampusfatima.jpg" class="d-block w-100 carousel-img" alt="Ponto de Coleta Parceiro">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0S8S3z5JZg-bJsJIzbLI02hRKtqZz4UXrofxUoTkSkYDxdQVrjd9jEWdbG0om6UMe3ttbgnhykLBLCgmPKHwNh3kmspGc0WXgJeTvvj8MiXZ5jvErr_WaEpxv76YWY_pZ8NxYFz8PiQNY/s1600/forum+biblioteca.JPG" class="d-block w-100 carousel-img" alt="Ponto de Coleta Parceiro">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://s2-g1.glbimg.com/B7pAZ9bk0Va-IInmONE77EW4RDw=/0x0:1700x1065/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2023/K/L/oJ4iWRSEmXUSpsdglDrw/camara-pouso-alegre.jpg" class="d-block w-100 carousel-img" alt="Ajude a Comunidade">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#destaquesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#destaquesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Sobre Nós -->
+        <section id="sobre" class="container my-4 my-md-5 py-3 py-md-4">
+            <h2 class="text-center mb-3 mb-md-4 display-5 fw-bold">Sobre Nós</h2>
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <p class="text-center fs-6 fs-md-5">A plataforma Achados e Perdidos nasceu da necessidade de conectar pessoas que perderam itens com aquelas que os encontraram. Nossa plataforma simplifica o processo de devolução, promovendo a solidariedade e a honestidade em nossa comunidade.</p>
+                    <p class="text-center fs-6 fs-md-5">Nosso objetivo é criar um ambiente seguro e eficiente para que objetos perdidos possam retornar aos seus donos, contando com a colaboração de usuários e pontos de coleta parceiros.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pontos de Coleta -->
+        <section  id="pontos" class="container my-5">
+            <h2 class="text-center mb-4 display-5 fw-bold">Pontos de Coleta</h2>
+            <div class="row justify-content-center text-center g-4">
+                <!-- Card 1 -->
+                <div class="col-md-6 col-lg-5">
+                    <div class="mb-4 p-4 bg-white rounded-4 shadow-sm">
+                        <h5 class="fw-bold text-dark">Univas - Unidade Fátima</h5>
+                        <p class="mb-1">Av. Prefeito Tuany Toledo, 470 - Fátima, Pouso Alegre - MG, 37550-000</p>
+                        <p class="mb-1"><strong>Funcionamento:</strong> Seg-Sex: 06:00-20:00, Sáb: 07:00-18:00</p>
+                        <p class="mb-1"><strong>Telefone:</strong> (00) 0000-0000</p>
+                        <p class="mb-1"><strong>Tipo:</strong> Universidade</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-6 col-lg-5">
+                    <div class="p-4 bg-white rounded-4 shadow-sm">
+                        <h5 class="fw-bold text-dark">Biblioteca Municipal de Pouso Alegre</h5>
+                        <p class="mb-1">Praça Senador José Bento, 2 - Centro, Pouso Alegre - MG, 37550-000</p>
+                        <p class="mb-1"><strong>Funcionamento:</strong> Seg-Sex: 08:00-17:00</p>
+                        <p class="mb-1"><strong>Telefone:</strong> (11) 1111-1111</p>
+                        <p class="mb-1"><strong>Tipo:</strong> Biblioteca</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipe -->
+        <section id="equipe" class="section-equipe">
+            <div class="container">
+                <h2 class="text-center mb-5 display-5 fw-bold">Conheça a equipe que torna tudo possível!</h2>
+                <div id="equipeContainer">
+                    <!-- Membros da equipe serão carregados dinamicamente -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Ajuda -->
+        <section  id="ajuda" class="py-5">
+            <div class="container">
+                <div class="bg-white p-5 rounded-4 shadow-lg">
+                    <h2 class="mb-4 text-center">Precisa de Ajuda?</h2>
+                    <p class="text-center">Estamos aqui para ajudar! Veja como você pode utilizar o sistema:</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3 text-center"><strong>Perdeu um objeto?</strong> Vá até um ponto de coleta e registre a perda, ou procure na seção de itens encontrados no site.</li>
+                        <li class="mb-3 text-center"><strong>Encontrou algo?</strong> Entregue no ponto de coleta mais próximo e registre no sistema para facilitar a devolução.</li>
+                        <li class="mb-3 text-center"><strong>Problemas com o site?</strong> Entre em contato com a equipe técnica pelo e-mail <a href="mailto:suporte@achadoseperdidos.com">suporte@achadoseperdidos.com</a>.</li>
+                    </ul>
+                    <p class="mt-4 text-center">Obrigado por contribuir com um mundo mais justo e organizado.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-2">&copy; 2025 Achados e Perdidos - Todos os direitos reservados</p>
+            <div class="footer-links">
+                <a href="#sobre" class="text-white mx-2">Sobre</a> |
+                <a href="#equipe" class="text-white mx-2">Equipe</a> |
+                <a href="#ajuda" class="text-white mx-2">Ajuda</a> |
+                <a href="#termos" class="text-white mx-2">Termos de Uso</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/utils/api_helpers.js"></script>
+    <script src="assets/js/ui/manipulador_navbar_auth.js"></script>
+    <script>
+        // Carregar equipe dinamicamente
+        document.addEventListener("DOMContentLoaded", async function() {
+            const equipeContainer = document.getElementById("equipeContainer");
+            
+            // Dados da equipe
+            const membrosEquipe = [
+                {
+                    nome: "MATHEUS FERNANDES REZENDE",
+                    descricao: "Desenvolvedor",
+                    foto: "assets/images/matheus.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "GABRIEL FRANCISCO DE FREITAS",
+                    descricao: "Desenvolvedor",
+                    foto: "assets/images/freitas.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "GABRIEL FERREIRA RUFINO",
+                    descricao: "Desenvolvedor",
+                    foto: "assets/images/rufino.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "ANA LAURA MOREIRA GARCIA",
+                    descricao: "Responsável por estratégias de marketing e comunicação da equipe.",
+                    foto: "assets/images/analaura.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "CAUÃ DE DEUS VENTURA AZEVEDO",
+                    descricao: "Gerencia tarefas administrativas com foco em eficiência e clareza.",
+                    foto: "assets/images/caua.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "DJALMA BORGES NETO",
+                    descricao: "Auxilia na coordenação dos processos financeiros e documentação.",
+                    foto: "assets/images/djalma.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "ELIAS EDUARDO DA SILVA",
+                    descricao: "Analista de suporte organizacional e financeiro da equipe.",
+                    foto: "assets/images/elias.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "GABRIEL CHAVES DE PAULA",
+                    descricao: "Responsável por otimizar os processos burocráticos do projeto.",
+                    foto: "assets/images/chaves.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "LETÍCIA DE ALMEIDA GONÇALVES",
+                    descricao: "Atua no apoio logístico e na comunicação com stakeholders.",
+                    foto: "assets/images/leticia.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "LUCAS DA FONSECA RIBEIRO",
+                    descricao: "Faz a ponte entre equipe técnica e a gestão administrativa.",
+                    foto: "assets/images/guigas.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "LUIS GUSTAVO VIDAL JUNIOR",
+                    descricao: "Colabora com organização de tarefas e fluxo interno da equipe.",
+                    foto: "assets/images/vidal.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "LUIZ FELIPE NOGUEIRA TADINI",
+                    descricao: "Gerencia o planejamento e execução financeira do grupo.",
+                    foto: "assets/images/tadini.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "VITÓRIA APARECIDA PEREIRA",
+                    descricao: "Faz a mágica acontecer nos bastidores com organização e estratégia.",
+                    foto: "assets/images/vitoria.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                },
+                {
+                    nome: "RAFAEL KENNEDY GODOY MOREIRA LOPES",
+                    descricao: "Gerencia o planejamento e execução financeira do grupo.",
+                    foto: "assets/images/rafael.png",
+                    redesSociais: [
+                        { icone: "bi-linkedin", link: "#" }
+                    ]
+                }
+            ];
+           
+            // Gerar cards da equipe
+            membrosEquipe.forEach(membro => {
+                const redesSociaisHTML = membro.redesSociais.map(rede => 
+                    `<a href="${rede.link}" class="text-muted fs-4 me-2"><i class="bi ${rede.icone}"></i></a>`
+                ).join('');
+                
+                const membroCard = document.createElement('div');
+                membroCard.innerHTML = `
+                    <div class="card member-card shadow-sm h-100">
+                        <img src="${membro.foto}" class="member-img-reformulated mt-4" alt="Foto do ${membro.nome}" onerror="this.src='assets/images/avatarPadrão.png'">
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="card-title fw-bold mt-3">${membro.nome}</h5>
+                            <p class="card-text text-muted">${membro.descricao}</p>
+                            <div class="mt-auto">
+                                ${redesSociaisHTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                equipeContainer.appendChild(membroCard);
+            });
+        });
+    </script>
+</body>
+</html>
+

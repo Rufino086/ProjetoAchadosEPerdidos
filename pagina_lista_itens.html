@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens Cadastrados - Achados e Perdidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/estilos_globais.css">
+</head>
+
+    <script src="assets/js/utils/api_helpers.js"></script> 
+    <script src="assets/js/ui/manipulador_navbar_auth.js"></script>
+    <script src="assets/js/paginas/logica_perfil_usuario.js"></script> 
+<body>
+
+    <!-- Navbar -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="pagina_inicial.html">
+                    <img src="assets/images/iconLogo.png" alt="Logo Achados e Perdidos" width="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="pagina_inicial.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="pagina_lista_itens.html">Itens Cadastrados</a></li>
+                    </ul>
+                    <div class="dropdown" id="userProfileDropdownContainer">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="assets/images/avatarPadrão.png" alt="Perfil do Usuário" width="40" class="rounded-circle" id="avatarUsuario">
+                            <span id="notificacaoPerfil" class="notification-badge"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small">
+
+                             <!-- Links manipulador_navbar_auth.js -->
+                            <li><a class="dropdown-item" href="#" id="linkMeuPerfil">Meu Perfil</a></li> 
+                            <li><a class="dropdown-item" href="pagina_login.html" id="linkEntrar">Entrar</a></li>
+                            <li><a class="dropdown-item" href="pagina_cadastro_usuario.html" id="linkCriarConta">Criar Conta</a></li>
+                            <li><a class="dropdown-item" href="#" id="linkConfiguracoes" style="display: none;">Configurações</a></li>
+                            <li><hr class="dropdown-divider" id="dividerLogout" style="display: none;"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutButton" style="display: none;">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Lista de Itens -->
+    <main class="container mt-4 mt-md-5 mb-4 mb-md-5 pt-4 pt-md-5">
+        <section class="py-3 py-md-4">
+            <div class="d-flex justify-content-between align-items-center mb-3 mb-md-4 flex-wrap">
+                <h2 class="mb-3 mb-md-0 display-5 fw-bold page-title">Itens na Plataforma</h2>
+                <div class="d-flex flex-column flex-sm-row gap-2">
+
+                    <!-- Links para página de gerenciamento de item -->
+                    <a href="pagina_gerenciar_item.html?action=achado" class="btn btn-success"><i class="bi bi-plus-circle-fill me-1"></i> Achei um Item</a> 
+                    <a href="pagina_gerenciar_item.html?action=perdido" class="btn btn-danger"><i class="bi bi-search me-1"></i> Perdi um Item</a> 
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="card shadow-sm mb-4 filter-card">
+                <div class="card-body p-3 p-md-4">
+                    <h5 class="card-title mb-3"><i class="bi bi-funnel-fill me-2"></i>Filtrar Itens</h5>
+                    <form class="row g-2 g-md-3 align-items-end" id="filtroItensForm">
+                        <div class="col-md-6 col-lg-3">
+                            <label for="filtroTipo" class="form-label">Tipo</label>
+                            <select id="filtroTipo" class="form-select">
+                                <option value="" selected>Todos os Tipos</option>
+                                <option value="achado">Achados</option>
+                                <option value="perdido">Perdidos</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <label for="filtroStatus" class="form-label">Status</label>
+                            <select id="filtroStatus" class="form-select">
+                                <option value="" selected>Todos os Status</option>
+                                <option value="Achado">Achado (Disponível)</option>
+                                <option value="Perdido">Perdido (Procurando)</option>
+                                <option value="Coletado">Coletado (Em Ponto de Coleta)</option>
+                                <option value="Em análise">Em Análise</option>
+                                <option value="Devolvido">Devolvido</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <label for="filtroLocal" class="form-label">Local (palavra-chave)</label>
+                            <input type="text" id="filtroLocal" class="form-control" placeholder="Ex: Shopping, Praça Central">
+                        </div>
+                        <div class="col-md-6 col-lg-3" id="filtroCodigoContainer" style="display: none;">
+                            <label for="filtroCodigo" class="form-label">Código do Item</label>
+                            <input type="text" class="form-control" id="filtroCodigo" placeholder="Digite o código" maxlength="6">
+                        </div>
+                        
+                        <div class="col-md-6 col-lg-2 d-flex flex-column flex-sm-row gap-2">
+                            <button type="submit" class="btn btn-primary flex-grow-1">Filtrar</button>
+                            <button type="reset" class="btn btn-outline-secondary flex-grow-1" id="limparFiltros">Limpar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Lista de Itens em Cards -->
+            <div id="listaDeItens" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 g-md-4">
+
+                <!-- Itens carregados aqui via JavaScript -->
+                <div class="col-12 text-center" id="loadingItens">
+                    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Carregando itens...</span>
+                    </div>
+                    <p class="mt-2">Carregando itens...</p>
+                </div>
+                <div class="col-12 text-center d-none" id="noResultsMessage">
+                    <i class="bi bi-emoji-frown fs-1 text-muted"></i>
+                    <p class="mt-2 fs-5 text-muted">Nenhum item encontrado com os filtros aplicados.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Achados e Perdidos - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/utils/api_helpers.js"></script> 
+    <script src="assets/js/ui/manipulador_navbar_auth.js"></script>
+    <script src="assets/js/logica_lista_itens.js"></script> 
+</body>
+</html>
+

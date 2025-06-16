@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Achados e Perdidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/estilos_globais.css"> <!-- Corrigido -->
+    <link rel="stylesheet" href="assets/css/estilos_login.css"> <!-- Corrigido -->
+</head>
+<body class="login-page-body">
+    <!-- Navbar -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="pagina_inicial.html"> 
+                    <img src="assets/images/iconLogo.png" alt="Logo Achados e Perdidos" width="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="pagina_inicial.html">Home</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="pagina_cadastro_usuario.html">Criar Conta</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Login -->
+    <main class="d-flex align-items-center justify-content-center login-main-content">
+        <div class="login-container">
+            <div class="text-center mb-4">
+                <h1 class="login-title">Bem-vindo(a) de volta!</h1>
+                <p class="login-subtitle">Acesse sua conta para continuar ajudando nossa comunidade.</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Login Usuário Comum -->
+                <div class="col-md-6">
+                    <div class="login-card user-login-card text-center">
+                        <i class="bi bi-person-circle login-icon"></i>
+                        <h2 class="login-card-title">Sou Usuário</h2>
+                        <form id="loginFormUsuario">
+                            <div class="error-message text-danger small mb-2" style="display: none;"></div>
+                            <div class="mb-3">
+                                <label for="emailLoginUsuario" class="form-label visually-hidden">Email</label>
+                                <input type="email" class="form-control" id="emailLoginUsuario" placeholder="Seu email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senhaLoginUsuario" class="form-label visually-hidden">Senha</label>
+                                <input type="password" class="form-control" id="senhaLoginUsuario" placeholder="Sua senha" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-login">Entrar como Usuário</button>
+                            </div>
+                            <p class="mt-3 mb-0 small">Não tem uma conta? <a href="pagina_cadastro_usuario.html?tipo=comum">Cadastre-se</a></p> 
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Login Ponto de Coleta -->
+                <div class="col-md-6">
+                    <div class="login-card coleta-login-card text-center">
+                        <i class="bi bi-shop login-icon"></i>
+                        <h2 class="login-card-title">Sou Ponto de Coleta</h2>
+                        <form id="loginFormPontoColeta">
+                            <div class="error-message text-danger small mb-2" style="display: none;"></div>
+                            <div class="mb-3">
+                                <label for="emailLoginColeta" class="form-label visually-hidden">Email</label>
+                                <input type="email" class="form-control" id="emailLoginColeta" placeholder="Email do Ponto de Coleta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senhaLoginColeta" class="form-label visually-hidden">Senha</label>
+                                <input type="password" class="form-control" id="senhaLoginColeta" placeholder="Senha do Ponto de Coleta" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-login">Entrar como Ponto de Coleta</button>
+                            </div>
+                             <p class="mt-3 mb-0 small">Não é um ponto de coleta? <a href="pagina_cadastro_ponto_coleta.html">Registre-se aqui</a></p> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 footer-login">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Achados e Perdidos - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="assets/js/utils/hashing.js"></script>
+    <script src="assets/js/utils/api_helpers.js"></script> 
+    <script src="assets/js/auth/autenticacao.js"></script> 
+    <script src="assets/js/ui/manipulador_navbar_auth.js"></script> 
+</body>
+</html>
+
